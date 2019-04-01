@@ -80,7 +80,7 @@ You can contact the author at :
 #define LZ4_HC_STATIC_LINKING_ONLY
 #include "lz4hc.h"
 #define LZ4_XXH_STATIC_LINKING_ONLY
-#include "LZ4_XXHash.h"
+#include "lz4_xxhash.h"
 
 
 /*-************************************

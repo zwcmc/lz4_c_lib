@@ -1,5 +1,5 @@
 /*
-*  LZ4_XXHash - Fast Hash algorithm
+*  xxHash - Fast Hash algorithm
 *  Copyright (C) 2012-2016, Yann Collet
 *
 *  BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
@@ -28,8 +28,8 @@
 *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 *  You can contact the author at :
-*  - LZ4_XXHash homepage: http://www.LZ4_XXHash.com
-*  - LZ4_XXHash source repository : https://github.com/Cyan4973/LZ4_XXHash
+*  - LZ4_XXHash homepage: http://www.xxhash.com
+*  - LZ4_XXHash source repository : https://github.com/Cyan4973/xxHash
 */
 
 
@@ -59,14 +59,14 @@
 #endif
 
 /*!LZ4_XXH_ACCEPT_NULL_INPUT_POINTER :
- * If the input pointer is a null pointer, LZ4_XXHash default behavior is to trigger a memory access error, since it is a bad pointer.
- * When this option is enabled, LZ4_XXHash output for null input pointers will be the same as a null-length input.
+ * If the input pointer is a null pointer, xxHash default behavior is to trigger a memory access error, since it is a bad pointer.
+ * When this option is enabled, xxHash output for null input pointers will be the same as a null-length input.
  * By default, this option is disabled. To enable it, uncomment below define :
  */
 /* #define LZ4_XXH_ACCEPT_NULL_INPUT_POINTER 1 */
 
 /*!LZ4_XXH_FORCE_NATIVE_FORMAT :
- * By default, LZ4_XXHash library provides endian-independent Hash values, based on little-endian convention.
+ * By default, xxHash library provides endian-independent Hash values, based on little-endian convention.
  * Results are therefore identical for little-endian and big-endian CPU.
  * This comes at a performance cost for big-endian CPU, since some swapping is required to emulate little-endian format.
  * Should endian-independence be of no importance for your application, you may set the #define below to 1,
@@ -105,7 +105,7 @@ static void  LZ4_XXH_free  (void* p)  { free(p); }
 static void* LZ4_XXH_memcpy(void* dest, const void* src, size_t size) { return memcpy(dest,src,size); }
 
 #define LZ4_XXH_STATIC_LINKING_ONLY
-#include "LZ4_XXHash.h"
+#include "lz4_xxhash.h"
 
 
 /* *************************************
@@ -533,7 +533,7 @@ LZ4_XXH_PUBLIC_API LZ4_XXH32_hash_t LZ4_XXH32_hashFromCanonical(const LZ4_XXH32_
 #   include <stdint.h>
     typedef uint64_t U64;
 # else
-    typedef unsigned long long U64;   /* if your compiler doesn't support unsigned long long, replace by another 64-bit type here. Note that LZ4_XXHash.h will also need to be updated. */
+    typedef unsigned long long U64;   /* if your compiler doesn't support unsigned long long, replace by another 64-bit type here. Note that xxhash.h will also need to be updated. */
 # endif
 #endif
 

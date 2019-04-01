@@ -1,5 +1,5 @@
 /*
-   LZ4_XXHash - Extremely Fast Hash algorithm
+   xxHash - Extremely Fast Hash algorithm
    Header File
    Copyright (C) 2012-2016, Yann Collet.
 
@@ -29,18 +29,18 @@
    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
    You can contact the author at :
-   - LZ4_XXHash source repository : https://github.com/Cyan4973/LZ4_XXHash
+   - LZ4_XXHash source repository : https://github.com/Cyan4973/xxHash
 */
 
-/* Notice extracted from LZ4_XXHash homepage :
+/* Notice extracted from xxHash homepage :
 
-LZ4_XXHash is an extremely fast Hash algorithm, running at RAM speed limits.
+xxHash is an extremely fast Hash algorithm, running at RAM speed limits.
 It also successfully passes all tests from the SMHasher suite.
 
 Comparison (single thread, Windows Seven 32 bits, using SMHasher on a Core 2 Duo @3GHz)
 
 Name            Speed       Q.Score   Author
-LZ4_XXHash          5.4 GB/s     10
+xxHash          5.4 GB/s     10
 CrapWow         3.2 GB/s      2       Andrew
 MumurHash 3a    2.7 GB/s     10       Austin Appleby
 SpookyHash      2.0 GB/s     10       Bob Jenkins
@@ -83,12 +83,12 @@ typedef enum { LZ4_XXH_OK=0, LZ4_XXH_ERROR } LZ4_XXH_errorcode;
 *  API modifier
 ******************************/
 /** LZ4_XXH_PRIVATE_API
-*   This is useful to include LZ4_XXHash functions in `static` mode
+*   This is useful to include xxhash functions in `static` mode
 *   in order to inline them, and remove their symbol from the public list.
 *   Methodology :
 *     #define LZ4_XXH_PRIVATE_API
-*     #include "LZ4_XXHash.h"
-*   `LZ4_XXHash.c` is automatically included.
+*     #include "xxhash.h"
+*   `xxhash.c` is automatically included.
 *   It's not useful to compile and link it as a separate module.
 */
 #ifdef LZ4_XXH_PRIVATE_API
@@ -110,13 +110,13 @@ typedef enum { LZ4_XXH_OK=0, LZ4_XXH_ERROR } LZ4_XXH_errorcode;
 
 /*!LZ4_XXH_NAMESPACE, aka Namespace Emulation :
 
-If you want to include _and expose_ LZ4_XXHash functions from within your own library,
-but also want to avoid symbol collisions with other libraries which may also include LZ4_XXHash,
+If you want to include _and expose_ xxHash functions from within your own library,
+but also want to avoid symbol collisions with other libraries which may also include xxHash,
 
-you can use LZ4_XXH_NAMESPACE, to automatically prefix any public symbol from LZ4_XXHash library
+you can use LZ4_XXH_NAMESPACE, to automatically prefix any public symbol from xxHash library
 with the value of LZ4_XXH_NAMESPACE (therefore, avoid NULL and numeric values).
 
-Note that no change is required within the calling program as long as it includes `LZ4_XXHash.h` :
+Note that no change is required within the calling program as long as it includes `xxHash.h` :
 regular symbol name will be automatically translated by this header.
 */
 #ifdef LZ4_XXH_NAMESPACE
@@ -177,7 +177,7 @@ LZ4_XXH_PUBLIC_API LZ4_XXH_errorcode LZ4_XXH32_update (LZ4_XXH32_state_t* stateP
 LZ4_XXH_PUBLIC_API LZ4_XXH32_hash_t  LZ4_XXH32_digest (const LZ4_XXH32_state_t* statePtr);
 
 /*
-These functions generate the LZ4_XXHash of an input provided in multiple segments.
+These functions generate the xxHash of an input provided in multiple segments.
 Note that, for small input, they are slower than single-call functions, due to state management.
 For small input, prefer `LZ4_XXH32()` and `LZ4_XXH64()` .
 
@@ -280,7 +280,7 @@ LZ4_XXH_PUBLIC_API LZ4_XXH64_hash_t LZ4_XXH64_hashFromCanonical(const LZ4_XXH64_
 #endif
 
 #  ifdef LZ4_XXH_PRIVATE_API
-#    include "LZ4_XXHash.c"   /* include LZ4_XXHash function bodies as `static`, for inlining */
+#    include "lz4_xxhash.c"   /* include xxhash function bodies as `static`, for inlining */
 #  endif
 
 #endif /* LZ4_XXH_STATIC_LINKING_ONLY */
